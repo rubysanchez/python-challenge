@@ -1,2 +1,2 @@
 # python-challenge
-This repo is for the Python Homework (week 3) 
+This repo is for my Python Homework (week 3) 
