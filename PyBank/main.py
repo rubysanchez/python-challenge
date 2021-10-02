@@ -2,7 +2,6 @@
 #Module for reading CSV files
 import os
 import csv
-from typing import Counter
 
 #Set path for the CSV file
 csvpath = os.path.join('.', 'PyBank', 'Resources', 'budget_data.csv')
