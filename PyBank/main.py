@@ -53,8 +53,20 @@ print(f"Greatest Increase in Profits: {Greatest_Inc_Date} (${Greatest_Inc})")
 print(f"Greatest Decrease in Profits: {Greatest_Dec_Date} (${Greatest_Dec})")
 
 #Export a text file with the results
+csvpath_out = os.path.join('.','PyBank','analysis','Analysis.txt')
 
-    
-
-
+with open(csvpath_out, 'w') as Analysis:
+    Analysis.write("Financial Analysis")
+    Analysis.write("\n")
+    Analysis.write("------------------------")
+    Analysis.write("\n")
+    Analysis.write(f"Total Months: {len(Total_Months)}")
+    Analysis.write("\n")
+    Analysis.write(f"Total: ${sum(Net_Total_PL)}")
+    Analysis.write("\n")
+    Analysis.write(f"Average Change: {Average_Change_PL}")
+    Analysis.write("\n")
+    Analysis.write(f"Greatest Increase in Profits: {Greatest_Inc_Date} (${Greatest_Inc})")
+    Analysis.write("\n")
+    Analysis.write(f"Greatest Decrease in Profits: {Greatest_Dec_Date} (${Greatest_Dec})")
 
