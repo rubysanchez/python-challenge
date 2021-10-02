@@ -50,3 +50,22 @@ with open(csvpath) as csvfile:
 
     print("-------------------------------")
     print("Winner: ", election_winner)
+
+
+#Export a text file with the results
+csvpath_out = os.path.join('.','PyPoll','analysis','Analysis.txt')
+
+with open(csvpath_out, 'w') as Analysis:
+    Analysis.write("Election Results")
+    Analysis.write("\n")
+    Analysis.write("------------------------")
+    Analysis.write("\n")
+    Analysis.write(f"Total Votes: {str(total_votes)}")
+    Analysis.write("\n")
+    Analysis.write("------------------------")
+    Analysis.write("\n")
+    Analysis.write(f"{voter_output}")
+    Analysis.write("\n")
+    Analysis.write("------------------------")
+    Analysis.write("\n")
+    Analysis.write(f"Winner: {election_winner}")
