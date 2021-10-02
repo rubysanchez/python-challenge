@@ -3,33 +3,50 @@
 import os
 import csv
 
+#assign variables
+total_votes = 0
+candidates = []
+winning_count = 0
+election_winner = ""
+
+#Dictionary for candidate and votes each
+candidate_votes = {}
+
+
 #Set path for the CSV file
 csvpath = os.path.join('.', 'PyPoll', 'Resources', 'election_data.csv')
 
 #Open the CSV file and Read it
 with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
-
-    #skips over the headers so it doesn't impact counts
+    #skips over the headers 
     header = next(csvreader)
-
-    #Loop through each row in the data set and push variables to empty arrays
-    #Total_Votes is a count of the rows in first column (or index 0)
-    #Candidates is where I'll store a list of each unique candidate in file from column 3 or index 2
-    Total_Votes = []
-    Candidates = []
+    
+     
     for row in csvreader:
-        Total_Votes.append(row[0])
-        Candidate = row[2]
+        total_votes += 1
 
-        #Determine votes per candidate
-        #Candidate respresents individual candidate. Candidates is the Array.
-        #Each time a candidate appears, add 1 to the count
-        if Candidate in Candidates:
-            candidate_index = Candidates.index(Candidate)
-            Total_Votes[candidate_index] = Total_Votes[candidate_index] + 1
-        else:
-            Candidates.append(Candidate)
-            Total_Votes.append(1)
+        candidate_name = row[2]
+        if candidate_name not in candidates:
+            candidates.append(candidate_name)
+            candidate_votes[candidate_name] = 0
+        candidate_votes[candidate_name] += 1
+    
+    print("Election Results")
+    print("------------------------")
+    print("Total Votes: ", total_votes)
+    print("------------------------")
 
-    #Calculate the Percentage of votes
+    for candidate in candidate_votes:
+        votes = candidate_votes.get(candidate)
+        vote_percent = float(votes)/(total_votes)*100
+
+        if (votes > winning_count):
+            winning_count = votes
+            election_winner = candidate
+
+        voter_output = f"{candidate}: {vote_percent:.3f}% ({votes})\n"
+        print(voter_output, end="")
+
+    print("-------------------------------")
+    print("Winner: ", election_winner)
